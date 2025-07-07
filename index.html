@@ -2,110 +2,33 @@
 <!DOCTYPE html>
 <html lang="cs">
 <head>
-  <meta charset="UTF-8" />
-  <title>Tvoje Hnízdo – Konfigurátor</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <link rel="icon" type="image/x-icon" href="favicon.ico" />
-  <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Rekapitulace – Tvoje Hnízdo</title>
+    <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div class="container">
-    <div class="config-column">
-      <header>
-        <img src="logo.png" alt="Tvoje Hnízdo" class="logo"/>
-        <h1>Konfigurátor domu</h1>
-      </header>
-
-      <form onsubmit="generateSummary(); return false;">
-        <section>
-          <h2>1. Zvolte tvar domu</h2>
-          <div class="shape-options">
-            <div class="shape" onclick="selectShape('obdelnik')" id="shape-obdelnik">▭<br>Obdélník</div>
-            <div class="shape" onclick="selectShape('L')" id="shape-L">⅃<br>L</div>
-            <div class="shape" onclick="selectShape('T')" id="shape-T">⊥<br>T</div>
-            <div class="shape" onclick="selectShape('U')" id="shape-U">⊔<br>U</div>
-          </div>
-          <input type="hidden" id="shape" value="obdelnik" />
+    <header>
+        <div class="logo-block">
+            <h1>Tvoje Hnízdo</h1>
+            <p class="motto">Domov, který si zvolíte. Jednoduše a na míru.</p>
+        </div>
+    </header>
+    <main>
+        <section class="recap">
+            <h2>🧾 Rekapitulace s cenou</h2>
+            <div class="section">
+                <h3>⚙️ Technické informace</h3>
+                <p>Zde budou technické detaily o zvoleném domě.</p>
+            </div>
+            <div class="section">
+                <h3>💰 Finanční rekapitulace</h3>
+                <p>Zde bude finální cena a rozpis nákladů.</p>
+            </div>
         </section>
-
-        <section>
-          <h2>2. Dispozice</h2>
-          <select id="layout">
-            <option value="1+kk">1+kk</option>
-            <option value="2+kk">2+kk</option>
-            <option value="3+kk">3+kk</option>
-            <option value="4+kk" selected>4+kk</option>
-            <option value="5+kk">5+kk</option>
-          </select>
-        </section>
-
-        <section>
-          <h2>3. Plocha domu</h2>
-          <label for="area">Plocha:</label>
-          <input type="range" id="area" min="20" max="300" value="100" oninput="updateArea()" />
-          <p><strong><span id="areaValue">100</span> m²</strong></p>
-        </section>
-
-        <section>
-          <h2>4. Dokončení</h2>
-          <select id="finish">
-            <option value="hrubá stavba">Hrubá stavba</option>
-            <option value="k dokončení">K dokončení</option>
-            <option value="na klíč">Na klíč</option>
-          </select>
-        </section>
-
-        <section>
-          <h2>5. Terasa</h2>
-          <label><input type="checkbox" id="terraceToggle" onchange="toggleTerrace()"> Chci terasu</label>
-          <div id="terraceSettings" style="display:none;">
-            <label>Velikost terasy: <span id="terraceSizeValue">8</span> m²</label>
-            <input type="range" id="terraceSize" min="4" max="50" value="8" oninput="updateTerraceSize()">
-            <label><input type="checkbox" id="terraceRoof"> Zastřešit terasu</label>
-          </div>
-        </section>
-
-        <section>
-          <h2>6. Interiér</h2>
-          <label>Počet WC:</label>
-          <select id="wcCount">
-            <option value="1">1</option><option value="2">2</option><option value="3">3</option>
-          </select>
-          <label>Koupelna:</label>
-          <select id="bathroom">
-            <option value="sprcha">Sprcha</option>
-            <option value="vana">Vana</option>
-            <option value="sprcha + vana">Sprcha + vana</option>
-          </select>
-        </section>
-
-        <section>
-          <h2>7. Elektroinstalace</h2>
-          <select id="electro">
-            <option value="zaklad">Základní rozvod</option>
-            <option value="priprava">Připraveno na chytrou domácnost</option>
-            <option value="chytra">Plně chytrá domácnost</option>
-          </select>
-        </section>
-
-        <section>
-          <h2>8. Rekapitulace</h2>
-          <div id="summaryBox"></div>
-          <button type="submit" class="btn">📄 Stáhnout PDF</button>
-        </section>
-      </form>
-    </div>
-
-    <div class="visual-column">
-      <div class="sticky-visual">
-        <h2>🖼️ Vizualizace</h2>
-        <div id="visualBox">Zde se bude zobrazovat náhled domu<br>podle tvaru a parametrů</div>
-      </div>
-    </div>
-  </div>
-
-  <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-  <script src="script.js"></script>
+        <aside class="visualization">
+            <img src="placeholder.jpg" alt="Vizualizace domu" />
+        </aside>
+    </main>
 </body>
 </html>
