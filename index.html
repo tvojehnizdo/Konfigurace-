@@ -1,0 +1,111 @@
+
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <meta charset="UTF-8" />
+  <title>Kompletní konfigurátor – Tvoje Hnízdo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- KROK 1 -->
+  <div class="step" id="step1">
+    <h1>Krok 1: Základní informace</h1>
+    <label>Dispozice:</label><br/>
+    <select id="layout">
+      <option value="1+kk">1+kk</option>
+      <option value="2+kk">2+kk</option>
+      <option value="3+kk">3+kk</option>
+      <option value="4+kk">4+kk</option>
+      <option value="5+kk">5+kk</option>
+      <option value="6+kk">6+kk</option>
+      <option value="7+kk">7+kk</option>
+    </select><br/>
+
+    <label>Plocha domu: <span id="areaValue">100</span> m²</label><br/>
+    <input type="range" id="area" min="20" max="300" value="100" oninput="updateArea()"><br/>
+
+    <label>Stupeň dokončení:</label><br/>
+    <select id="finish">
+      <option value="hrubá stavba">Hrubá stavba</option>
+      <option value="k dokončení">K dokončení</option>
+      <option value="na klíč">Na klíč</option>
+    </select><br/>
+
+    <button onclick="nextStep()">Další</button>
+  </div>
+
+  <!-- KROK 2 -->
+  <div class="step" id="step2">
+    <h1>Krok 2: Terasa</h1>
+
+    <label>Chcete terasu?</label><br/>
+    <input type="checkbox" id="terraceToggle" onchange="toggleTerrace()"> Ano<br/>
+
+    <div id="terraceSettings">
+      <label>Velikost terasy: <span id="terraceSizeValue">8</span> m²</label><br/>
+      <input type="range" id="terraceSize" min="4" max="50" value="8" oninput="updateTerraceSize()"><br/>
+      <label>Zastřešit terasu?</label><br/>
+      <input type="checkbox" id="terraceRoof"> Ano<br/>
+    </div>
+
+    <button onclick="prevStep()">Zpět</button>
+    <button onclick="nextStep()">Další</button>
+  </div>
+
+  <!-- KROK 3 -->
+  <div class="step" id="step3">
+    <h1>Krok 3: Vybavení interiéru</h1>
+
+    <label>Počet WC:</label><br/>
+    <select id="wcCount">
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+    </select><br/>
+
+    <label>Koupelna:</label><br/>
+    <select id="bathroom">
+      <option value="sprcha">Sprcha</option>
+      <option value="vana">Vana</option>
+      <option value="sprcha + vana">Sprcha + vana</option>
+    </select><br/>
+
+    <label>Typ podlahy:</label><br/>
+    <select id="flooring">
+      <option value="laminát">Laminát</option>
+      <option value="dlažba">Dlažba</option>
+      <option value="vinyl">Vinyl</option>
+      <option value="dřevo">Dřevo</option>
+    </select><br/>
+
+    <label>Elektroinstalace:</label><br/>
+    <select id="electro">
+      <option value="zaklad">Základní rozvod</option>
+      <option value="priprava">Připraveno na chytrou domácnost (+60 000 Kč)</option>
+      <option value="chytra">Plně chytrá domácnost (+165 000 Kč)</option>
+    </select><br/>
+
+    <button onclick="prevStep()">Zpět</button>
+    <button onclick="showSummary()">Zobrazit rekapitulaci</button>
+  </div>
+
+  <!-- KROK 4 -->
+  <div class="step" id="step4">
+    <h1>Krok 4: Rekapitulace a export</h1>
+    <div id="summaryBox"></div>
+
+    <h3>Vizualizace domu</h3>
+    <div id="visualPlaceholder">🖼️ Zde bude vizualizace domu (napojení později)</div>
+
+    <button onclick="generatePDF()">📄 Stáhnout PDF</button>
+    <button onclick="alert('Odeslání e-mailem bude aktivní později.')">✉️ Odeslat e-mailem</button>
+    <button onclick="prevStep()">Zpět</button>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
