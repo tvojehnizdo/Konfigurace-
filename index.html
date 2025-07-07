@@ -5,109 +5,104 @@
   <meta charset="UTF-8" />
   <title>Tvoje Hnízdo – Konfigurátor</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <link rel="stylesheet" href="style.css" />
   <link rel="icon" type="image/x-icon" href="favicon.ico" />
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <main>
-    <h1>Tvoje Hnízdo – Konfigurátor domu</h1>
+  <div class="container">
+    <div class="config-column">
+      <header>
+        <img src="logo.png" alt="Tvoje Hnízdo" class="logo"/>
+        <h1>Konfigurátor domu</h1>
+      </header>
 
-    <form onsubmit="generateSummary(); return false;">
-      <!-- Tvar domu -->
-      <section>
-        <h2>1. Tvar domu</h2>
-        <select id="shape">
-          <option value="obdélník">Obdélník</option>
-          <option value="L">L</option>
-          <option value="T">T</option>
-          <option value="U">U</option>
-        </select>
-      </section>
+      <form onsubmit="generateSummary(); return false;">
+        <section>
+          <h2>1. Zvolte tvar domu</h2>
+          <div class="shape-options">
+            <div class="shape" onclick="selectShape('obdelnik')" id="shape-obdelnik">▭<br>Obdélník</div>
+            <div class="shape" onclick="selectShape('L')" id="shape-L">⅃<br>L</div>
+            <div class="shape" onclick="selectShape('T')" id="shape-T">⊥<br>T</div>
+            <div class="shape" onclick="selectShape('U')" id="shape-U">⊔<br>U</div>
+          </div>
+          <input type="hidden" id="shape" value="obdelnik" />
+        </section>
 
-      <!-- Dispozice -->
-      <section>
-        <h2>2. Dispozice</h2>
-        <select id="layout">
-          <option value="1+kk">1+kk</option>
-          <option value="2+kk">2+kk</option>
-          <option value="3+kk">3+kk</option>
-          <option value="4+kk" selected>4+kk</option>
-          <option value="5+kk">5+kk</option>
-        </select>
-      </section>
+        <section>
+          <h2>2. Dispozice</h2>
+          <select id="layout">
+            <option value="1+kk">1+kk</option>
+            <option value="2+kk">2+kk</option>
+            <option value="3+kk">3+kk</option>
+            <option value="4+kk" selected>4+kk</option>
+            <option value="5+kk">5+kk</option>
+          </select>
+        </section>
 
-      <!-- Plocha -->
-      <section>
-        <h2>3. Plocha domu</h2>
-        <label for="area">Vyberte plochu:</label>
-        <input type="range" id="area" min="20" max="300" value="100" oninput="updateArea()" />
-        <p><strong><span id="areaValue">100</span> m²</strong></p>
-      </section>
+        <section>
+          <h2>3. Plocha domu</h2>
+          <label for="area">Plocha:</label>
+          <input type="range" id="area" min="20" max="300" value="100" oninput="updateArea()" />
+          <p><strong><span id="areaValue">100</span> m²</strong></p>
+        </section>
 
-      <!-- Dokončení -->
-      <section>
-        <h2>4. Stupeň dokončení</h2>
-        <select id="finish">
-          <option value="hrubá stavba">Hrubá stavba</option>
-          <option value="k dokončení">K dokončení</option>
-          <option value="na klíč">Na klíč</option>
-        </select>
-      </section>
+        <section>
+          <h2>4. Dokončení</h2>
+          <select id="finish">
+            <option value="hrubá stavba">Hrubá stavba</option>
+            <option value="k dokončení">K dokončení</option>
+            <option value="na klíč">Na klíč</option>
+          </select>
+        </section>
 
-      <!-- Terasa -->
-      <section>
-        <h2>5. Terasa</h2>
-        <label><input type="checkbox" id="terraceToggle" onchange="toggleTerrace()"> Chci terasu</label>
-        <div id="terraceSettings" style="display:none;">
-          <label>Velikost terasy: <span id="terraceSizeValue">8</span> m²</label>
-          <input type="range" id="terraceSize" min="4" max="50" value="8" oninput="updateTerraceSize()">
-          <label><input type="checkbox" id="terraceRoof"> Zastřešit terasu</label>
-        </div>
-      </section>
+        <section>
+          <h2>5. Terasa</h2>
+          <label><input type="checkbox" id="terraceToggle" onchange="toggleTerrace()"> Chci terasu</label>
+          <div id="terraceSettings" style="display:none;">
+            <label>Velikost terasy: <span id="terraceSizeValue">8</span> m²</label>
+            <input type="range" id="terraceSize" min="4" max="50" value="8" oninput="updateTerraceSize()">
+            <label><input type="checkbox" id="terraceRoof"> Zastřešit terasu</label>
+          </div>
+        </section>
 
-      <!-- Vybavení -->
-      <section>
-        <h2>6. Vybavení interiéru</h2>
-        <label>Počet WC:</label>
-        <select id="wcCount">
-          <option value="1">1</option><option value="2">2</option><option value="3">3</option>
-        </select>
+        <section>
+          <h2>6. Interiér</h2>
+          <label>Počet WC:</label>
+          <select id="wcCount">
+            <option value="1">1</option><option value="2">2</option><option value="3">3</option>
+          </select>
+          <label>Koupelna:</label>
+          <select id="bathroom">
+            <option value="sprcha">Sprcha</option>
+            <option value="vana">Vana</option>
+            <option value="sprcha + vana">Sprcha + vana</option>
+          </select>
+        </section>
 
-        <label>Koupelna:</label>
-        <select id="bathroom">
-          <option value="sprcha">Sprcha</option>
-          <option value="vana">Vana</option>
-          <option value="sprcha + vana">Sprcha + vana</option>
-        </select>
+        <section>
+          <h2>7. Elektroinstalace</h2>
+          <select id="electro">
+            <option value="zaklad">Základní rozvod</option>
+            <option value="priprava">Připraveno na chytrou domácnost</option>
+            <option value="chytra">Plně chytrá domácnost</option>
+          </select>
+        </section>
 
-        <label>Podlahy:</label>
-        <select id="flooring">
-          <option value="laminát">Laminát</option>
-          <option value="dlažba">Dlažba</option>
-          <option value="vinyl">Vinyl</option>
-          <option value="dřevo">Dřevo</option>
-        </select>
-      </section>
+        <section>
+          <h2>8. Rekapitulace</h2>
+          <div id="summaryBox"></div>
+          <button type="submit" class="btn">📄 Stáhnout PDF</button>
+        </section>
+      </form>
+    </div>
 
-      <!-- Elektroinstalace -->
-      <section>
-        <h2>7. Elektroinstalace</h2>
-        <select id="electro">
-          <option value="zaklad">Základní rozvod</option>
-          <option value="priprava">Připraveno na chytrou domácnost (+60 000 Kč)</option>
-          <option value="chytra">Plně chytrá domácnost (+165 000 Kč)</option>
-        </select>
-      </section>
-
-      <!-- Shrnutí -->
-      <section>
-        <h2>8. Rekapitulace</h2>
-        <div id="summaryBox"></div>
-        <div id="visualPlaceholder">🖼️ Zde bude vizualizace domu</div>
-        <button type="submit" class="btn">📄 Stáhnout PDF</button>
-      </section>
-    </form>
-  </main>
+    <div class="visual-column">
+      <div class="sticky-visual">
+        <h2>🖼️ Vizualizace</h2>
+        <div id="visualBox">Zde se bude zobrazovat náhled domu<br>podle tvaru a parametrů</div>
+      </div>
+    </div>
+  </div>
 
   <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
