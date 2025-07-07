@@ -1,24 +1,61 @@
 
 body {
-  font-family: Arial, sans-serif;
-  padding: 2rem;
-  text-align: center;
+  font-family: 'Inter', sans-serif;
+  background: #f6f6f6;
+  margin: 0;
+  color: #333;
 }
-.step {
+header {
+  background: #4caf50;
+  color: white;
+  text-align: center;
+  padding: 1rem;
+}
+.logo {
+  height: 60px;
+  margin-bottom: 0.5rem;
+}
+main {
+  max-width: 800px;
+  margin: 2rem auto;
+  background: white;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+section {
+  margin-bottom: 2.5rem;
+}
+label {
   display: block;
+  margin-top: 1rem;
+  text-align: left;
+}
+select, input[type=range] {
+  width: 100%;
+  padding: 0.5rem;
+  margin-top: 0.3rem;
 }
 #summaryBox {
-  border: 1px solid #ccc;
-  padding: 1.5rem;
-  max-width: 700px;
-  margin: 0 auto 2rem auto;
-  text-align: left;
-  background: #f9f9f9;
+  margin-top: 1rem;
+  background: #f0f9f0;
+  padding: 1rem;
+  border: 1px solid #b2dfdb;
+  border-radius: 6px;
 }
 #visualPlaceholder {
-  border: 1px dashed #aaa;
-  background: #fffdf7;
-  padding: 2rem;
-  margin: 1rem auto;
-  max-width: 400px;
+  margin: 1.5rem 0;
+  padding: 1rem;
+  background: #fffde7;
+  border: 1px dashed #fbc02d;
+  text-align: center;
+}
+.btn.primary {
+  background: #4caf50;
+  color: white;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
 }

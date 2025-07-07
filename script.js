@@ -1,35 +1,62 @@
 
+function updateArea() {
+  document.getElementById("areaValue").textContent = document.getElementById("area").value;
+}
+function updateTerraceSize() {
+  document.getElementById("terraceSizeValue").textContent = document.getElementById("terraceSize").value;
+}
+function toggleTerrace() {
+  const terraceEnabled = document.getElementById("terraceToggle").checked;
+  document.getElementById("terraceSettings").style.display = terraceEnabled ? "block" : "none";
+}
+
+function generateSummary() {
+  const layout = document.getElementById("layout").value;
+  const area = parseInt(document.getElementById("area").value);
+  const finish = document.getElementById("finish").value;
+  const terrace = document.getElementById("terraceToggle").checked;
+  const terraceSize = terrace ? parseInt(document.getElementById("terraceSize").value) : 0;
+  const terraceRoof = document.getElementById("terraceRoof").checked;
+  const wc = document.getElementById("wcCount").value;
+  const bathroom = document.getElementById("bathroom").value;
+  const flooring = document.getElementById("flooring").value;
+  const electro = document.getElementById("electro").value;
+
+  let pricePerM2 = finish === "hrubá stavba" ? 16500 : finish === "k dokončení" ? 24500 : 30500;
+  let housePrice = area * pricePerM2;
+  let terracePrice = terrace ? terraceSize * 2500 : 0;
+  let electroPrice = electro === "priprava" ? 60000 : electro === "chytra" ? 165000 : 0;
+  let totalPrice = housePrice + terracePrice + electroPrice;
+
+  document.getElementById("summaryBox").innerHTML = `
+    <p><strong>Dispozice:</strong> ${layout}</p>
+    <p><strong>Plocha domu:</strong> ${area} m²</p>
+    <p><strong>Stupeň dokončení:</strong> ${finish}</p>
+    <p><strong>Cena za dům:</strong> ${housePrice.toLocaleString()} Kč</p>
+    ${terrace ? `<p><strong>Terasa:</strong> ${terraceSize} m² ${terraceRoof ? "(zastřešená)" : ""}</p>` : ""}
+    ${terrace ? `<p><strong>Příplatek za terasu:</strong> ${terracePrice.toLocaleString()} Kč</p>` : ""}
+    <p><strong>Počet WC:</strong> ${wc}</p>
+    <p><strong>Koupelna:</strong> ${bathroom}</p>
+    <p><strong>Podlaha:</strong> ${flooring}</p>
+    <p><strong>Elektroinstalace:</strong> ${electro}</p>
+    <p><strong>Příplatek za elektroinstalaci:</strong> ${electroPrice.toLocaleString()} Kč</p>
+    <h3>Celková cena: ${totalPrice.toLocaleString()} Kč</h3>
+  `;
+}
+
 function generatePDF() {
   const { jsPDF } = window.jspdf;
   const doc = new jsPDF();
-  const box = document.getElementById("summaryBox");
-
-  html2canvas(box).then((canvas) => {
+  const summary = document.getElementById("summaryBox");
+  html2canvas(summary).then(canvas => {
     const imgData = canvas.toDataURL("image/png");
-    doc.setFontSize(14);
     doc.text("Rekapitulace návrhu domu", 10, 10);
     doc.addImage(imgData, "PNG", 10, 20, 180, 0);
     doc.save("rekapitulace-domu.pdf");
   });
 }
 
-// Ukázková rekapitulace pro export
 document.addEventListener("DOMContentLoaded", () => {
-  document.getElementById("summaryBox").innerHTML = `
-    <h2>Souhrn konfigurace</h2>
-    <p><strong>Dispozice:</strong> 4+kk</p>
-    <p><strong>Plocha domu:</strong> 120 m²</p>
-    <p><strong>Stupeň dokončení:</strong> na klíč</p>
-    <p><strong>Cena za dům:</strong> 3 660 000 Kč</p>
-    <p><strong>Terasa:</strong> 12 m² (zastřešená)</p>
-    <p><strong>Příplatek za terasu:</strong> 30 000 Kč</p>
-    <hr/>
-    <p><strong>Počet WC:</strong> 2</p>
-    <p><strong>Koupelna:</strong> sprcha + vana</p>
-    <p><strong>Podlaha:</strong> vinyl</p>
-    <p><strong>Elektroinstalace:</strong> Plně chytrá domácnost</p>
-    <p><strong>Příplatek za elektro:</strong> 165 000 Kč</p>
-    <hr/>
-    <h3>Celková cena domu: 3 855 000 Kč</h3>
-  `;
+  updateTerraceSize();
+  toggleTerrace();
 });
