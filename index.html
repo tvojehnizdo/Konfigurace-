@@ -2,34 +2,111 @@
 <!DOCTYPE html>
 <html lang="cs">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Rekapitulace – Tvoje Hnízdo</title>
-    <link rel="stylesheet" href="style.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <meta charset="UTF-8" />
+  <title>Tvoje Hnízdo – Konfigurátor v3</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="icon" type="image/x-icon" href="favicon.ico" />
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-    <header>
-        <div class="logo-block">
-            <h1><i class="fa-solid fa-nest"></i> Tvoje Hnízdo</h1>
-            <p class="motto">Domov, který si zvolíte. Jednoduše a na míru.</p>
+  <div class="background-logo"></div>
+  <header>
+    <img src="logo.png" alt="Tvoje Hnízdo" class="logo"/>
+    <h1>Tvoje Hnízdo – Konfigurátor domu</h1>
+    <p class="motto">Domov, který si zvolíte. Jednoduše a na míru.</p>
+  </header>
+
+  <main>
+    <form onsubmit="generateSummary(); return false;">
+      <section class="block">
+        <h2>1. Tvar domu</h2>
+        <div class="shapes">
+          <label><input type="radio" name="shape" value="Obdélník" checked /> Obdélník</label>
+          <label><input type="radio" name="shape" value="L" /> L</label>
+          <label><input type="radio" name="shape" value="T" /> T</label>
+          <label><input type="radio" name="shape" value="U" /> U</label>
         </div>
-    </header>
-    <main>
-        <section class="recap">
-            <h2><i class="fa-solid fa-file-invoice-dollar"></i> Rekapitulace s cenou</h2>
-            <div class="section">
-                <h3><i class="fa-solid fa-gears"></i> Technické informace</h3>
-                <p>Zde budou technické detaily o zvoleném domě.</p>
-            </div>
-            <div class="section">
-                <h3><i class="fa-solid fa-coins"></i> Finanční rekapitulace</h3>
-                <p>Zde bude finální cena a rozpis nákladů.</p>
-            </div>
-        </section>
-        <aside class="visualization">
-            <img src="placeholder.jpg" alt="Vizualizace domu" />
-        </aside>
-    </main>
+      </section>
+
+      <section class="block">
+        <h2>2. Dispozice</h2>
+        <select id="layout">
+          <option value="1+kk">1+kk</option>
+          <option value="2+kk">2+kk</option>
+          <option value="3+kk">3+kk</option>
+          <option value="4+kk" selected>4+kk</option>
+          <option value="5+kk">5+kk</option>
+        </select>
+      </section>
+
+      <section class="block">
+        <h2>3. Plocha domu</h2>
+        <label for="area">Zvolte velikost:</label>
+        <input type="range" id="area" min="20" max="300" value="100" oninput="updateArea()" />
+        <p><strong><span id="areaValue">100</span> m²</strong></p>
+      </section>
+
+      <section class="block">
+        <h2>4. Terasa</h2>
+        <label><input type="checkbox" id="terraceToggle" onchange="toggleTerrace()"> Chci terasu</label>
+        <div id="terraceSettings" style="display:none;">
+          <label>Velikost terasy: <span id="terraceSizeValue">8</span> m²</label>
+          <input type="range" id="terraceSize" min="4" max="50" value="8" oninput="updateTerraceSize()">
+          <label><input type="checkbox" id="terraceRoof"> Zastřešit terasu</label>
+        </div>
+      </section>
+
+      <section class="block">
+        <h2>5. Interiér</h2>
+        <label>Počet WC:</label>
+        <select id="wcCount">
+          <option value="1">1</option><option value="2">2</option><option value="3">3</option>
+        </select>
+        <label>Koupelna:</label>
+        <select id="bathroom">
+          <option value="sprcha">Sprcha</option>
+          <option value="vana">Vana</option>
+          <option value="sprcha + vana">Sprcha + vana</option>
+        </select>
+      </section>
+
+      <section class="block">
+        <h2>6. Elektroinstalace</h2>
+        <select id="electro">
+          <option value="zaklad">Základní rozvod</option>
+          <option value="priprava">Připraveno na chytrou domácnost</option>
+          <option value="chytra">Plně chytrá domácnost</option>
+        </select>
+      </section>
+
+      <section class="block">
+        <h2>7. Kontaktní údaje</h2>
+        <input type="text" id="name" placeholder="Jméno a příjmení" required><br/>
+        <input type="email" id="email" placeholder="E-mail" required><br/>
+        <input type="tel" id="phone" placeholder="Telefon" required><br/>
+        <input type="text" id="region" placeholder="Okres" required><br/>
+        <label>Požadovaný termín (nepovinné):</label><br/>
+        <input type="date" id="date">
+      </section>
+
+      <section class="block">
+        <h2>8. Stupeň dokončení</h2>
+        <select id="finish">
+          <option value="hrubá stavba">Hrubá stavba</option>
+          <option value="k dokončení">K dokončení</option>
+          <option value="na klíč">Na klíč</option>
+        </select>
+      </section>
+
+      <section class="block highlight">
+        <h2>🧾 Rekapitulace</h2>
+        <div id="summaryBox"></div>
+        <div class="buttons">
+          <button type="submit" class="btn">📤 Odeslat e-mailem</button>
+        </div>
+      </section>
+    </form>
+  </main>
+  <script src="script.js"></script>
 </body>
 </html>
