@@ -1,33 +1,33 @@
 
 # 🏠 Konfigurátor domu – Tvoje Hnízdo
 
-Plně funkční vícestránkový konfigurátor domu v moderním designu, laděný do identity značky **Tvoje Hnízdo**.
+Kompletní vícefázový konfigurátor v moderním designu s ikonami, vizualizací, logem, barevným stylem a exportem.
 
-[![Deploy with Vercel](https://vercelbadge.vercel.app/api/tvojehnizdo/konfigurator)](https://vercel.com/import)
+## ✨ Funkce
+- Výběr tvaru domu (Obdélník, L, T, U) – s ilustracemi
+- Dispozice 1+kk až 5+kk
+- Plocha domu (slider 20–300 m²)
+- Volitelná terasa (rozměr + zastřešení)
+- Výběr interiéru (WC, koupelna, podlahy, elektroinstalace)
+- Kontaktní formulář (jméno, e-mail, telefon, okres, termín)
+- Stupeň dokončení (hrubá stavba, k dokončení, na klíč)
+- Vizualizace vpravo a rekapitulace návrhu
+- Logo a motto firmy Tvoje Hnízdo
+- Barvy a vzhled laděné do stylu značky
+- Připraveno pro e-mail + PDF export
+- Vodotiskové ikony u sekcí
 
-## 🔧 Funkce
-
-- Výběr dispozice 1+kk až 7+kk
-- Plocha domu (20–300 m²)
-- Stupeň dokončení: Hrubá stavba / K dokončení / Na klíč
-- Terasa: výběr, rozměr, zastřešení
-- Vybavení interiéru: WC, koupelna, podlaha, elektroinstalace
-- Automatický výpočet ceny
-- PDF export rekapitulace
-- Připraveno pro generování vizualizace domu
+## 🎨 Design
+- Světlé přírodní barvy
+- Logo jako pozadí (vodotisk)
+- Ikony u sekcí
+- Jasná navigace
 
 ## 🚀 Nasazení
-
-1. Nahraj projekt na [https://vercel.com](https://vercel.com)
-2. Přidej `favicon.ico` a `logo.png` do složky
-3. Uprav `script.js` nebo napoj vizualizaci později
-
-## 🧩 Logo a design
-
-- Použit font Inter
-- Barvy značky: zelená `#4caf50`, neutrální pozadí `#fefefe`
-- Logo a favicon jsou již součástí repozitáře
+1. Nahraj na GitHub nebo Vercel
+2. Otevři `index.html`
+3. Volitelně připoj `EmailJS` a `DALL·E` vizualizaci
 
 ---
 
-MIT License © [TvojeHnizdo.cz](https://tvojehnizdo.cz)
+MIT License © [Tvoje Hnízdo](https://tvojehnizdo.cz)
